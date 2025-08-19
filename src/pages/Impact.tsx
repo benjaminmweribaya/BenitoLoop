@@ -1,6 +1,8 @@
 import Seo from "@/components/Seo";
+import { motion } from "framer-motion";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { FaLeaf, FaTint, FaRecycle, FaTshirt } from "react-icons/fa";
-import { MdHistory, MdTrendingUp } from "react-icons/md";
+import { MdHistory, MdTrendingUp, MdCheckCircle } from "react-icons/md";
 
 const lifetimeData = [
   {
@@ -34,10 +36,10 @@ const lifetimeData = [
 ];
 
 const recentActivity = [
-  "Donation collected • 2 jackets, 1 pair of jeans",
-  "AI sorting complete • Recommended: Upcycle",
-  "Order shipped • Upcycled Denim Tote",
-  "New marketplace listing • Patchwork Jacket",
+  { text: "Donation collected • 2 jackets, 1 pair of jeans", icon: <MdCheckCircle className="text-[#2E7D32]" /> },
+  { text: "AI sorting complete • Recommended: Upcycle", icon: <MdCheckCircle className="text-[#2E7D32]" /> },
+  { text: "Order shipped • Upcycled Denim Tote", icon: <MdCheckCircle className="text-[#2E7D32]" /> },
+  { text: "New marketplace listing • Patchwork Jacket", icon: <MdCheckCircle className="text-[#2E7D32]" /> },
 ];
 
 const upcomingGoals = [
@@ -46,9 +48,17 @@ const upcomingGoals = [
   { goal: "Reduce landfill by 6 m³", progress: 71 },
 ];
 
+const impactTrends = [
+  { month: "Jan", CO2: 0.3, Water: 4, Landfill: 1 },
+  { month: "Feb", CO2: 0.6, Water: 7, Landfill: 1.5 },
+  { month: "Mar", CO2: 0.9, Water: 12, Landfill: 2.3 },
+  { month: "Apr", CO2: 1.1, Water: 15, Landfill: 3.2 },
+  { month: "May", CO2: 1.2, Water: 18, Landfill: 4.3 },
+];
+
 const Impact = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#2E7D32] to-[#1B5E20] text-white">
+    <div className="min-h-screen bg-white text-[#1B5E20]">
       <Seo
         title="Impact Dashboard — BenitoLoop"
         description="Track CO₂, water, and landfill savings from your donations and purchases."
@@ -56,38 +66,50 @@ const Impact = () => {
 
       <div className="container mx-auto px-4 py-10">
         {/* Header */}
-        <h1 className="text-4xl font-extrabold text-center md:text-left">
-          Impact Dashboard
-        </h1>
-        <p className="mt-2 text-gray-200 text-center md:text-left">
-          Your contributions to a circular fashion economy are making a real
-          difference.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center md:text-left"
+        >
+          <h1 className="text-4xl font-extrabold">Impact Dashboard</h1>
+          <p className="mt-2 text-gray-700">
+            Your contributions to a circular fashion economy are making a real difference.
+          </p>
+        </motion.div>
 
         {/* Lifetime Stats */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {lifetimeData.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="rounded-xl bg-white text-black p-6 shadow-lg flex flex-col items-center text-center hover:shadow-2xl transition-all"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="rounded-xl bg-white text-black p-6 shadow-md flex flex-col items-center text-center border-2 border-[#2E7D32] hover:shadow-lg transition-all"
             >
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
-                style={{ backgroundColor: `${item.color}33`, color: item.color }}
+                style={{ backgroundColor: `${item.color}22`, color: item.color }}
               >
                 {item.icon}
               </div>
               <h3 className="text-2xl font-bold">{item.value}</h3>
               <p className="text-sm font-medium text-gray-700">{item.label}</p>
               <p className="mt-2 text-xs text-gray-500">{item.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Goals */}
-        <section className="mt-12 rounded-xl bg-white/10 p-6 backdrop-blur-lg">
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 rounded-xl bg-white p-6 border-2 border-[#2E7D32] shadow-md"
+        >
           <h2 className="flex items-center gap-2 text-xl font-semibold">
-            <MdTrendingUp className="text-[#FFC107]" /> Upcoming Goals
+            <MdTrendingUp className="text-[#2E7D32]" /> Upcoming Goals
           </h2>
           <div className="mt-6 space-y-6">
             {upcomingGoals.map((goal, index) => (
@@ -96,67 +118,99 @@ const Impact = () => {
                   <span>{goal.goal}</span>
                   <span>{goal.progress}%</span>
                 </div>
-                <div className="w-full h-3 bg-white/20 rounded-full overflow-hidden">
-                  <div
-                    className="h-3 rounded-full"
-                    style={{
-                      width: `${goal.progress}%`,
-                      backgroundColor: "#FFC107",
-                    }}
-                  ></div>
+                <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${goal.progress}%` }}
+                    transition={{ duration: 1, delay: index * 0.2 }}
+                    className="h-3 rounded-full bg-[#2E7D32]"
+                  ></motion.div>
                 </div>
               </div>
             ))}
           </div>
-        </section>
 
-        {/* Activity Feed */}
+          {/* Impact Trend Chart */}
+          <div className="mt-10 h-64 bg-gray-50 rounded-xl p-4 border border-[#2E7D32]">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={impactTrends}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
+                <XAxis dataKey="month" stroke="#2E7D32" />
+                <YAxis stroke="#2E7D32" />
+                <Tooltip contentStyle={{ backgroundColor: "#2E7D32", border: "none", color: "#fff" }} />
+                <Line type="monotone" dataKey="CO2" stroke="#FFC107" strokeWidth={2} dot />
+                <Line type="monotone" dataKey="Water" stroke="#03A9F4" strokeWidth={2} dot />
+                <Line type="monotone" dataKey="Landfill" stroke="#8BC34A" strokeWidth={2} dot />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </motion.section>
+
+        {/* Activity Feed & Why Impact Matters */}
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <section className="rounded-xl bg-white/10 p-6 backdrop-blur-lg">
+          <motion.section
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="rounded-xl bg-white p-6 border-2 border-[#2E7D32] shadow-md"
+          >
             <h2 className="flex items-center gap-2 text-xl font-semibold">
-              <MdHistory className="text-[#FFC107]" /> Recent Activity
+              <MdHistory className="text-[#2E7D32]" /> Recent Activity
             </h2>
-            <ul className="mt-4 space-y-3 text-sm text-gray-200">
+            <ul className="mt-4 space-y-3 text-sm text-gray-700">
               {recentActivity.map((activity, index) => (
                 <li
                   key={index}
-                  className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition"
+                  className="p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition flex items-center gap-2 border border-[#2E7D32]/40"
                 >
-                  {activity}
+                  {activity.icon} {activity.text}
                 </li>
               ))}
             </ul>
-          </section>
+          </motion.section>
 
-          <section className="rounded-xl bg-white/10 p-6 backdrop-blur-lg">
+          <motion.section
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="rounded-xl bg-white p-6 border-2 border-[#2E7D32] shadow-md"
+          >
             <h2 className="text-xl font-semibold">Why Your Impact Matters</h2>
-            <p className="mt-4 text-sm text-gray-200">
+            <p className="mt-4 text-sm text-gray-700">
               Every item you donate or purchase reduces demand for virgin
               materials, saves precious water, and prevents greenhouse gas
               emissions. Together, we are building a truly circular fashion
               economy.
             </p>
-            <p className="mt-4 text-sm text-gray-200">
+            <p className="mt-4 text-sm text-gray-700">
               BenitoLoop ensures transparency by tracking the lifecycle of every
               item you interact with. Your personal dashboard is updated in
               real-time to show your tangible contributions.
             </p>
-          </section>
+          </motion.section>
         </div>
 
         {/* CTA */}
-        <div className="mt-12 text-center">
-          <h3 className="text-xl font-semibold">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mt-12 text-center"
+        >
+          <h3 className="text-xl font-semibold text-[#2E7D32]">
             Keep up the momentum — every action counts!
           </h3>
-          <button className="mt-4 bg-[#FFC107] text-black font-semibold px-6 py-3 rounded-full hover:bg-[#FFB300] transition">
+          <button className="mt-4 bg-[#2E7D32] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#1B5E20] transition">
             Make Another Contribution
           </button>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 };
 
 export default Impact;
+
+
+
 

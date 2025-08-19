@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">BenitoLoop — Circular Fashion Illustration</title>
+  <desc id="desc">An abstract circular loop made from clothing silhouettes, eco leaves, and arrows to symbolize recycling and upcycling in fashion.</desc>
+
+  <!-- ====== PALETTE ======
+       Deep Green: #1B5E20 / #2E7D32
+       Accent Gold: #FFC107
+       Soft Mint: #C8E6C9
+       Graphite: #0E1B12
+  -->
+
+  <defs>
+    <!-- Subtle vignette -->
+    <radialGradient id="bg" cx="50%" cy="50%" r="65%">
+      <stop offset="0" stop-color="#274D2B" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#0E1B12" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <!-- Ring gradient -->
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E7D32"/>
+      <stop offset="1" stop-color="#1B5E20"/>
+    </linearGradient>
+
+    <!-- Glow for accents -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft shadow -->
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#0E1B12" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Accent gradient -->
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC107"/>
+      <stop offset="1" stop-color="#FFB300"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background vignette -->
+  <rect width="1200" height="900" fill="url(#bg)"/>
+
+  <!-- Decorative mint blobs -->
+  <g opacity="0.25">
+    <circle cx="1050" cy="180" r="120" fill="#C8E6C9"/>
+    <circle cx="980" cy="730" r="90" fill="#C8E6C9"/>
+    <circle cx="760" cy="80" r="70" fill="#C8E6C9"/>
+  </g>
+
+  <!-- Core circular ring -->
+  <g transform="translate(240,120)">
+    <!-- Outer ring -->
+    <circle cx="420" cy="330" r="260" stroke="url(#ring)" stroke-width="22" fill="none" filter="url(#softShadow)"/>
+    <!-- Dotted orbit -->
+    <circle cx="420" cy="330" r="210" stroke="#C8E6C9" stroke-width="3" stroke-dasharray="6 10" fill="none" opacity="0.6"/>
+
+    <!-- Arrows indicating circularity -->
+    <g stroke="url(#accent)" stroke-width="10" stroke-linecap="round" filter="url(#glow)">
+      <path d="M420 65 C610 70 705 170 735 265" fill="none"/>
+      <polygon points="735,265 718,240 751,243" fill="url(#accent)"/>
+      <path d="M420 595 C230 590 135 490 105 395" fill="none"/>
+      <polygon points="105,395 123,420 90,417" fill="url(#accent)"/>
+    </g>
+
+    <!-- Clothing silhouettes on the ring (stylized) -->
+    <!-- T-shirt -->
+    <g transform="translate(620,160) rotate(20)">
+      <path d="M60 20 L95 5 L120 35 L105 50 L105 110 L15 110 L15 50 L0 35 L25 5 Z" fill="#2E7D32" stroke="#1B5E20" stroke-width="3" filter="url(#softShadow)"/>
+      <rect x="45" y="55" width="30" height="18" rx="4" fill="#C8E6C9" opacity="0.8"/>
+    </g>
+
+    <!-- Sneaker -->
+    <g transform="translate(230,525) rotate(-18)">
+      <path d="M10 70 C30 45 85 35 130 40 C168 44 190 60 195 75 C198 85 190 95 170 100 L45 100 C20 98 5 85 10 70 Z"
+            fill="#2E7D32" stroke="#1B5E20" stroke-width="3" filter="url(#softShadow)"/>
+      <path d="M55 75 L150 75" stroke="#C8E6C9" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="45" cy="92" r="6" fill="#FFC107"/>
+    </g>
+
+    <!-- Tote bag -->
+    <g transform="translate(165,145) rotate(-22)">
+      <rect x="0" y="25" width="140" height="95" rx="12" fill="#2E7D32" stroke="#1B5E20" stroke-width="3" filter="url(#softShadow)"/>
+      <path d="M25 25 C25 5 115 5 115 25" stroke="#C8E6C9" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <rect x="18" y="45" width="104" height="18" rx="4" fill="#C8E6C9" opacity="0.85"/>
+    </g>
+
+    <!-- Scarf / fabric ribbon -->
+    <g transform="translate(585,490) rotate(8)">
+      <path d="M0 0 C60 -25 140 20 180 0 C220 -18 260 -10 290 10 C310 25 300 55 268 55 C235 55 220 38 185 35 C130 30 90 65 45 60 C15 56 -8 25 0 0 Z"
+            fill="#2E7D32" stroke="#1B5E20" stroke-width="3" filter="url(#softShadow)"/>
+      <circle cx="265" cy="35" r="6" fill="url(#accent)"/>
+    </g>
+
+    <!-- Eco leaves -->
+    <g fill="#C8E6C9" stroke="#2E7D32" stroke-width="2" opacity="0.95">
+      <path d="M410 60 C430 75 440 105 420 120 C395 140 365 130 350 110 C340 95 360 65 377 60 C390 55 400 53 410 60 Z"/>
+      <path d="M760 320 C780 330 790 355 775 370 C755 390 725 385 710 370 C700 360 710 335 730 328 C742 324 748 318 760 320 Z"/>
+      <path d="M110 340 C130 352 138 372 125 386 C110 402 85 398 70 384 C60 374 70 350 90 343 C98 340 103 337 110 340 Z"/>
+    </g>
+
+    <!-- Sparkles -->
+    <g fill="url(#accent)" filter="url(#glow)" opacity="0.9">
+      <circle cx="420" cy="330" r="4"/>
+      <circle cx="700" cy="300" r="3"/>
+      <circle cx="250" cy="420" r="3"/>
+      <circle cx="580" cy="120" r="3"/>
+    </g>
+
+    <!-- Impact tokens -->
+    <g font-family="Inter, ui-sans-serif, system-ui" font-weight="600" font-size="16">
+      <g transform="translate(705,80)">
+        <rect x="-16" y="-12" rx="12" width="210" height="40" fill="url(#accent)" opacity="0.95" filter="url(#softShadow)"/>
+        <text x="8" y="14" fill="#0E1B12">CO₂ avoided • +1.2t</text>
+      </g>
+      <g transform="translate(25,500)">
+        <rect x="-16" y="-12" rx="12" width="220" height="40" fill="#C8E6C9" opacity="0.95" filter="url(#softShadow)"/>
+        <text x="8" y="14" fill="#1B5E20">Water saved • 18k L</text>
+      </g>
+      <g transform="translate(680,600)">
+        <rect x="-16" y="-12" rx="12" width="230" height="40" fill="#C8E6C9" opacity="0.95" filter="url(#softShadow)"/>
+        <text x="8" y="14" fill="#1B5E20">Landfill reduced • 4.3 m³</text>
+      </g>
+    </g>
+  </g>
+</svg>
